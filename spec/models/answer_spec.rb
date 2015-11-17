@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  let(:answers) {Answer.create!(body: "New Answer Body")}
+  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body")}
+  let(:answers) {Answer.create!(body: "New Answer Body", question: question)}
 
   describe "attributes" do
     it "should respond to body" do
