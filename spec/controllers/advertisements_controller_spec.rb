@@ -63,7 +63,7 @@ RSpec.describe AdvertisementsController, type: :controller do
 
     it "assigns [my_ad] to @advertisement" do
       get :index
-      expect(assigns(:advertisement)).to eq([my_ad])
+      expect(assigns(:advertisements)).to eq([my_ad])
     end
    end
 
