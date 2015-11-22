@@ -1,0 +1,16 @@
+<h1>All Questions</h1>
+<div class="form-group">
+  <%= link_to '<button type="button" class="btn btn-primary">New Question</button>'.html_safe, new_question_path %>
+</div>
+<% @questions.each do |question| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to question.title, question %>
+        <% if question.resolved %>
+          <%= p '- (Resolved)' %>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+<% end %>
