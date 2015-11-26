@@ -30,3 +30,5 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Use twitter bootstrap
 gem 'bootstrap-sass'
+# Used for encrypting User password_digest
+gem 'bcrypt'
