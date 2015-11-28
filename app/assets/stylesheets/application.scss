@@ -17,9 +17,33 @@
 @import "bootstrap";
 
 .user-info {
-  margin-top: 9px;
+  margin-top: 5px;
 }
 
 .nav {
   margin-top: 5px;
+}
+
+.nav-tabs li {
+  margin-top: 19px;
+}
+
+.gravatar {
+  margin-top: -10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+}
+
+.sign-out {
+  display: block;
+  text-align: right;
+}
+
+.user-div {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.grav-div {
+  display: inline;
 }
