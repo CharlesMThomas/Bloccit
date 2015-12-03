@@ -11,5 +11,5 @@ class Post < ActiveRecord::Base
   validates :user, presence: true
 
   scope :ordered_by_title, -> { order('title')}
-  scope :ordered_by_reverse_created_at, -> { order('created_at ASC')}
+  scope :ordered_by_reverse_created_at, -> { order('created_at DESC')}
 end
