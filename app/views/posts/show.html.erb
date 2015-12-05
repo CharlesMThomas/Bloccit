@@ -1,7 +1,7 @@
 <h1>
   <%= @post.title %>
-  <% if @post.topic.rating %>
-    <%= render partial: 'ratings/display', locals: { rating: Rating.find(@post.topic.rating) } %>
+  <% if @post.rating %>
+    <%= render partial: 'ratings/display', locals: { rating: @post.rating } %>
   <% end %>
   <small>
     submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %>

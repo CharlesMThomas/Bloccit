@@ -31,8 +31,10 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
+    # raise
     @topic.rating = Rating.update_rating(params[:topic][:rating])
     @topic.assign_attributes(topic_params)
+    # raise
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])

@@ -1,5 +1,5 @@
 class AddRatingToPosts < ActiveRecord::Migration
   def change
-    add_column :posts, :rating_id, :integer
+    add_reference :posts, :rating, index: true, foreign_key: true
   end
 end

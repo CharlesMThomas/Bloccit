@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  topic_id   :integer
+#  user_id    :integer
+#  rating_id  :integer
+#
+
 require 'rails_helper'
 include RandomData
 

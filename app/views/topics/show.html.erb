@@ -1,7 +1,7 @@
 <h1>
   <%= @topic.name %>
   <% if @topic.rating %>
-    <%= render partial: 'ratings/display', locals: { rating: Rating.find(@topic.rating) } %>
+    <%= render partial: 'ratings/display', locals: { rating: @topic.rating } %>
   <% end %>
 </h1>
 

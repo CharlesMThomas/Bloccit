@@ -1,5 +1,5 @@
 class AddRatingToTopics < ActiveRecord::Migration
   def change
-    add_column :topics, :rating_id, :integer
+    add_reference :topics, :rating, index: true, foreign_key: true
   end
 end
