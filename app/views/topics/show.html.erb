@@ -1,4 +1,9 @@
-<h1><%= @topic.name %></h1>
+<h1>
+  <%= @topic.name %>
+  <% if @topic.rating %>
+    <%= render partial: 'ratings/display', locals: { rating: Rating.find(@topic.rating) } %>
+  <% end %>
+</h1>
 
 <% if user_is_authorized_for_topics? %>
   <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
