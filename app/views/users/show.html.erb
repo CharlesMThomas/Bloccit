@@ -18,8 +18,12 @@
     </div>
   </div>
 </div>
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% unless user_has_posts_or_comments? %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <h3><%= " #{current_user.name} has not sumitted any posts or comments yet" %></h3>
+<% end %>
