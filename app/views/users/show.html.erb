@@ -27,3 +27,24 @@
 <% else %>
   <h3><%= " #{current_user.name} has not sumitted any posts or comments yet" %></h3>
 <% end %>
+<h2>Favorite Posts</h2>
+<% @favorites.each do |favorite| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to favorite.post.title,  topic_post_path(favorite.post.topic, favorite.post) %><br />
+        <div class="col-sm-1 col-md-1 user-gravatar">
+          <%= image_tag favorite.post.user.avatar_url(48), class: "gravatar" %>
+        </div>
+        <div class="col-sm-8 col-md-8 fav-info">
+          <%= pluralize(favorite.post.points, 'point') %>
+          <small>
+            <%= pluralize(favorite.post.up_votes, 'up vote') %>
+            <%= pluralize(favorite.post.down_votes, 'down vote') %> <br />
+            <%= pluralize(favorite.post.comments.count, 'comments') %>
+          </small>
+        </div>
+      </h4>
+    </div>
+  </div>
+<% end %>
