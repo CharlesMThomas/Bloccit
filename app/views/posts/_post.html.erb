@@ -6,7 +6,7 @@
       <%= render partial: "labels/list", locals: { labels: post.labels } %>
     </h4>
     <small>
-      submitted <%= time_aga_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+      submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
       <%= post.comments.count %> Comments
     </small>
   </div>
