@@ -118,6 +118,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#generate_auth_token" do
+    it "creates a token" do
+      expect(user.auth_token).to_not be_nil
+    end
+  end
+
   describe "scopes" do
     before do
       @public_topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
