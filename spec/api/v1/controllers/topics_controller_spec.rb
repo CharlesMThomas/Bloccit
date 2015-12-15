@@ -1,8 +1,10 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe Api::V1::TopicsController, type: :controller do
   let(:my_user) { create(:user) }
   let(:my_topic) { create(:topic) }
+  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
 
   context "unathenticated user" do
     it "GET index returns http success" do
@@ -21,7 +23,7 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
     end
 
     it "POST create returns http unauthenticated" do
-      put :create, topic: {name: "Topic Name", description: "Topic Description"}
+      post :create, topic: {name: "Topic Name", description: "Topic Description"}
       expect(response).to have_http_status(401)
     end
 
@@ -52,7 +54,7 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
     end
 
     it "POST create returns http unauthenticated" do
-      put :create, topic: {name: "Topic Name", description: "Topic Description"}
+      post :create, topic: {name: "Topic Name", description: "Topic Description"}
       expect(response).to have_http_status(403)
     end
 
@@ -67,6 +69,7 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
       my_user.admin!
       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
       @new_topic = build(:topic)
+      @new_post = build(:post, topic_id: my_topic.id, user: my_user)
     end
 
     describe "PUT update" do
@@ -87,7 +90,7 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
     end
 
     describe "POST create" do
-      before { put :create, topic: {name: @new_topic.name, description: @new_topic.description} }
+      before { post :create, topic: {name: @new_topic.name, description: @new_topic.description} }
 
       it "returns http success" do
         expect(response).to have_http_status(:success)
@@ -101,6 +104,24 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
         hashed_json = JSON.parse(response.body)
         expect(@new_topic.name).to eq hashed_json["name"]
         expect(@new_topic.description).to eq hashed_json["description"]
+      end
+    end
+
+    describe "POST create_post" do
+      before { post :create_post, topic_id: my_topic.id, post: {title: @new_post.title, body: @new_post.body} }
+
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
+
+      it "returns json content type" do
+        expect(response.content_type).to eq 'application/json'
+      end
+
+      it "creates a topic with the correct attributes" do
+        hashed_json = JSON.parse(response.body)
+        expect(@new_post.title).to eq hashed_json["title"]
+        expect(@new_post.body).to eq hashed_json["body"]
       end
     end
 
